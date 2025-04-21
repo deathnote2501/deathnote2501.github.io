@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jérôme Iavarone - Consultant & Formateur en IA Générative</title>
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- AOS CSS (CDN) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Charte Graphique & Styles Personnalisés --- */
+        :root {
+            --primary-color: #D1E9FF; /* Bleu glacier */
+            --secondary-color: #C8F7E1; /* Vert menthe pâle */
+            --accent-color: #E6D9FF; /* Lavande irisée */
+            --text-color: #343a40; /* Gris foncé pour le texte */
+            --light-text-color: #6c757d; /* Gris plus clair */
+            --bg-light: #FDFEFE; /* Blanc cassé / Ivoire très clair */
+            --bg-grey: #F0F2F5; /* Gris perle / Très clair */
+            --border-color: #dee2e6;
+            --shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+            --shadow-md: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .1);
+            --font-family-base: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        h2 i {
+           /* color: var(--primary-color); */
+           margin-right: 0.75rem;
+           font-size: 0.9em; /* Légèrement plus petit que le texte */
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .bg-grey {
+            background-color: var(--bg-grey);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.85); /* Blanc semi-transparent */
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--text-color) !important;
+        }
+
+        .nav-link {
+            color: var(--light-text-color) !important;
+            font-weight: 400;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-color) !important;
+            font-weight: 600;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(135deg, rgba(209, 233, 255, 0.1) 0%, rgba(200, 247, 225, 0.1) 100%), var(--bg-light); /* Dégradé pastel très léger */
+            padding: 120px 0 80px 0;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        #hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        #hero p {
+            font-size: 1.1rem;
+            color: var(--light-text-color);
+            margin-bottom: 2rem;
+        }
+        #hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%; /* Cercle pour la photo */
+            box-shadow: var(--shadow-lg);
+            border: 5px solid var(--bg-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+         #hero img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .15);
+        }
+
+
+        /* --- Buttons --- */
+        .btn {
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 50px; /* Boutons arrondis */
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+        }
+        .btn-primary:hover {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-primary:focus {
+             background-color: var(--bg-light);
+            color: var(--text-color);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md), 0 0 0 0.25rem rgba(209, 233, 255, 0.5); /* Bleu glacier */
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+             border: 2px solid var(--secondary-color);
+        }
+        .btn-secondary:hover {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+         .btn-secondary:focus {
+             background-color: var(--bg-light);
+            color: var(--text-color);
+            border-color: var(--secondary-color);
+            box-shadow: var(--shadow-md), 0 0 0 0.25rem rgba(200, 247, 225, 0.5); /* Vert menthe */
+        }
+
+        .btn i {
+            margin-right: 8px;
+            vertical-align: middle; /* Aligner l'icône avec le texte */
+        }
+
+        /* --- Cards --- */
+        .card {
+            border: none;
+            border-radius: 15px; /* Coins arrondis */
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* Assurer la même hauteur pour les cartes dans une rangée */
+            overflow: hidden; /* Pour que l'image ne dépasse pas */
+            background-color: #fff; /* Fond blanc pour les cartes */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        .card-img-top {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            max-height: 200px; /* Limiter la hauteur des images */
+            object-fit: cover; /* Couvrir la zone sans déformer */
+        }
+        .card-body {
+            padding: 1.75rem;
+        }
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: inline-block; /* Pour l'alignement */
+        }
+        .card ul {
+            padding-left: 1.2rem;
+            margin-bottom: 0;
+        }
+        .card ul li {
+            margin-bottom: 0.5rem;
+            color: var(--light-text-color);
+        }
+        .card ul li::marker {
+            color: var(--primary-color);
+        }
+
+        /* --- Testimonials --- */
+        #testimonials .card {
+            background-color: var(--bg-grey);
+        }
+        .testimonial-quote {
+            font-style: italic;
+            color: var(--light-text-color);
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            display: block;
+        }
+        .testimonial-source {
+            font-size: 0.9em;
+            color: var(--light-text-color);
+        }
+        .google-rating {
+            color: #ffc107; /* Jaune pour les étoiles */
+        }
+
+        /* --- Results --- */
+        #results .result-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+         #results .result-item:hover {
+             transform: translateY(-5px);
+             box-shadow: var(--shadow-md);
+         }
+        .result-item h4 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .result-item .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+         .result-item .description {
+            color: var(--light-text-color);
+         }
+
+
+        /* --- Partners --- */
+        #partners img {
+            max-height: 60px; /* Ajuster la hauteur des logos */
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            margin: 15px; /* Espacement entre les logos */
+        }
+        #partners img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background: linear-gradient(135deg, rgba(209, 233, 255, 0.2) 0%, rgba(230, 217, 255, 0.2) 100%), var(--bg-grey); /* Dégradé bleu glacier -> lavande léger */
+        }
+
+        .contact-info i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 15px;
+            width: 40px; /* Pour aligner le texte */
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--text-color);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0 20px 0;
+        }
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        footer .social-icons a {
+            font-size: 1.5rem;
+            margin-left: 15px;
+            display: inline-block; /* Nécessaire pour la transition */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        footer .social-icons a:hover {
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        /* --- Animations & Transitions --- */
+        /* (Déjà intégrées dans les styles :hover ci-dessus) */
+        /* AOS sera utilisé pour les animations au défilement */
+
+        /* --- Utilities --- */
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 991.98px) {
+            #hero {
+                text-align: center;
+                padding: 80px 0 60px 0;
+                min-height: auto;
+            }
+            #hero .hero-text {
+                margin-bottom: 40px;
+            }
+             #hero h1 {
+                font-size: 2.4rem;
+            }
+             #hero img {
+                max-width: 250px; /* Réduire un peu l'image sur mobile */
+                margin: 0 auto; /* Centrer */
+            }
+            h2 {
+                font-size: 1.8rem;
+                justify-content: center; /* Centrer les titres avec icônes */
+            }
+             .section-padding {
+                padding: 60px 0;
+            }
+            .card {
+                 margin-bottom: 30px;
+             }
+        }
+         @media (max-width: 767.98px) {
+             .navbar-nav {
+                 text-align: center;
+                 margin-top: 15px;
+             }
+             .nav-link {
+                  margin-left: 0;
+                  padding: 10px 0;
+             }
+             #hero h1 {
+                font-size: 2rem;
+            }
+             #hero p {
+                font-size: 1rem;
+            }
+             .btn {
+                 padding: 10px 20px;
+                 font-size: 0.9rem;
+             }
+             #partners img {
+                 max-height: 45px;
+             }
+             footer .text-end {
+                 text-align: center !important;
+                 margin-top: 15px;
+             }
+             footer .social-icons a {
+                 margin: 0 10px;
+             }
+         }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" data-aos="fade-down">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-gem me-2"></i>Jérôme Iavarone
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Accueil</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#about">Expertise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#results">Résultats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Témoignages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-text" data-aos="fade-right">
+                    <h1>Boostez Votre Entreprise avec l'IA Générative</h1>
+                    <p>Consultant et Formateur Expert en IA Générative, je vous accompagne pour intégrer l'intelligence artificielle, optimiser votre productivité et améliorer la qualité du travail de vos équipes.</p>
+                    <a href="#contact" class="btn btn-primary me-2 mb-2"><i class="bi bi-arrow-right-circle-fill"></i> Discutons de votre projet</a>
+                    <a href="#services" class="btn btn-secondary mb-2"><i class="bi bi-lightbulb-fill"></i> Découvrir mes services</a>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-delay="200">
+                    <img src="https://www.gpt-solutions.fr/wp-content/uploads/2020/01/photo_2023-08-04_14-53-54-1024x1024.jpg" alt="Photo de Jérôme Iavarone" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- About / Expertise Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+             <div class="row justify-content-center">
+                <div class="col-lg-10 text-center" data-aos="fade-up">
+                     <h2><i class="bi bi-person-badge"></i>Mon Parcours & Expertise</h2>
+                     <p class="lead mb-5">De formation informatique, après un passage chez Michelin et 12 ans d’expérience entrepreneuriale dans le e-commerce, je me consacre depuis plus de 5 ans à l'IA Générative.</p>
+                 </div>
+            </div>
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                     <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-0vw8EOgHsYY-unsplash-scaled.jpg" alt="Blocs translucides IA" class="img-fluid rounded shadow-md" style="filter: brightness(95%);">
+                 </div>
+                 <div class="col-lg-6" data-aos="fade-left">
+                    <p>J’ai accompagné des <span class="highlight">dizaines d’entreprises</span> dans l’intégration stratégique d’outils d’IA Générative, permettant d'optimiser significativement la productivité et d'améliorer la qualité du travail des collaborateurs.</p>
+                     <p>Référencé dans plusieurs <span class="highlight">dizaines d’organismes de formation</span> en France, j'ai formé plusieurs centaines de professionnels issus de divers secteurs d'activité, leur donnant les clés pour maîtriser ces nouvelles technologies.</p>
+                     <p>J'interviens également régulièrement comme <span class="highlight">conférencier</span>, partageant mon expertise lors d'événements majeurs tels que le Printemps de l’IA, le plus grand rassemblement dédié à l’IA dans le Puy-de-Dôme.</p>
+                      <a href="https://www.linkedin.com/in/jerome-iavarone/" target="_blank" class="btn btn-secondary"><i class="bi bi-linkedin"></i> Voir mon profil LinkedIn</a>
+                 </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-grey">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2><i class="bi bi-gear-wide-connected"></i>Mes Prestations sur Mesure</h2>
+                    <p class="lead mb-5">Que vous ayez besoin d'un accompagnement stratégique ou de former vos équipes, je propose des solutions adaptées à vos objectifs.</p>
+                </div>
+            </div>
+            <div class="row gy-4 justify-content-center">
+                <!-- Service: Conseil -->
+                <div class="col-md-6 col-lg-5" data-aos="fade-up">
+                    <div class="card h-100">
+                        <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-mDPMZYyQuIQ-unsplash-scaled.jpg" class="card-img-top" alt="Conseil IA abstrait">
+                        <div class="card-body d-flex flex-column">
+                            <div class="mb-3"><i class="bi bi-briefcase-fill card-icon"></i></div>
+                            <h3 class="card-title">Conseil en IA Générative (3-5 jours)</h3>
+                            <p class="card-text flex-grow-1">Accompagnement stratégique pour intégrer l'IA dans vos processus, identifier les cas d'usage à fort ROI et conduire le changement.</p>
+                            <ul class="list-unstyled mb-4">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Audit & Analyse des besoins</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Sélection & Test des outils IA</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Mise en œuvre & Formation interne</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Déploiement & Industrialisation</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Suivi & Mesure du ROI</li>
+                            </ul>
+                             <a href="#contact" class="btn btn-primary mt-auto align-self-start"><i class="bi bi-chat-dots-fill"></i> Demander une consultation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service: Formation -->
+                <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100">
+                        <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-erunoELfh50-unsplash-scaled.jpg" class="card-img-top" alt="Formation IA abstrait">
+                        <div class="card-body d-flex flex-column">
+                             <div class="mb-3"><i class="bi bi-mortarboard-fill card-icon"></i></div>
+                            <h3 class="card-title">Formations IA Générative</h3>
+                            <p class="card-text flex-grow-1">Des parcours adaptés à tous les niveaux pour maîtriser les outils et techniques de l'IA générative et les appliquer concrètement à vos métiers.</p>
+                             <div class="accordion accordion-flush mt-3" id="formationAccordion">
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingDebut">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDebut" aria-expanded="false" aria-controls="collapseDebut">
+                                      Niveau Débutant > Avancé (2 jours)
+                                    </button>
+                                  </h2>
+                                  <div id="collapseDebut" class="accordion-collapse collapse" aria-labelledby="headingDebut" data-bs-parent="#formationAccordion">
+                                    <div class="accordion-body">
+                                      <strong>Objectifs :</strong> Comprendre l'IA, maîtriser les outils clés, l'ingénierie du prompt, appliquer sur cas métier simples, créer des workflows basiques. <br>
+                                      <strong>Prérequis :</strong> Aisance informatique de base.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingExpert">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExpert" aria-expanded="false" aria-controls="collapseExpert">
+                                      Niveau Avancé > Expert (2 jours)
+                                    </button>
+                                  </h2>
+                                  <div id="collapseExpert" class="accordion-collapse collapse" aria-labelledby="headingExpert" data-bs-parent="#formationAccordion">
+                                    <div class="accordion-body">
+                                      <strong>Objectifs :</strong> Prompts avancés (CoT, Multi-agent), GPTs personnalisés, workflows complexes, automatisation (n8n), chatbots internes/clients (RAG, Typebot), API... <br>
+                                      <strong>Prérequis :</strong> Formation Débutant > Avancé ou maîtrise équivalente.
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <a href="#contact" class="btn btn-secondary mt-auto align-self-start"><i class="bi bi-calendar-check-fill"></i> Planifier une formation</a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Service: Accompagnement IA (Optionnel) -->
+                 <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                         <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-pfyAg0Tybi0-unsplash-scaled.jpg" class="card-img-top" alt="Accompagnement IA abstrait">
+                        <div class="card-body d-flex flex-column">
+                             <div class="mb-3"><i class="bi bi-headset card-icon" style="color: var(--accent-color);"></i></div>
+                            <h3 class="card-title">Accompagnement IA Continu</h3>
+                            <p class="card-text flex-grow-1">Un support dédié pour pérenniser les usages, traiter vos nouvelles problématiques et bénéficier d'une veille IA appliquée.</p>
+                             <ul class="list-unstyled mb-4">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>1 journée de conseil/formation prioritaire</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Support illimité (email, tél, visio - 48h)</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Veille IA personnalisée</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Développement de nouveaux cas d'usage</li>
+                            </ul>
+                             <a href="#contact" class="btn btn-primary mt-auto align-self-start" style="background-color: var(--accent-color); border-color: var(--accent-color);"><i class="bi bi-person-check-fill"></i> S'informer sur l'accompagnement</a>
+                        </div>
+                    </div>
+                 </div>
+
+            </div>
+        </div>
+    </section>
+
+     <!-- Results Section -->
+    <section id="results" class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2><i class="bi bi-graph-up-arrow"></i>Des Résultats Concrets et Chiffrés</h2>
+                    <p class="lead mb-5">L'intégration de l'IA générative se traduit par des gains mesurables en temps, en qualité et en rentabilité pour mes clients.</p>
+                </div>
+            </div>
+            <div class="row gy-4">
+                 <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                     <div class="result-item text-center">
+                        <h4><i class="bi bi-building me-2"></i>Amefa</h4>
+                        <span class="value">47 jours / an</span>
+                        <p class="description">Gain de temps par opérateur sur la rédaction d'emails service client (20% ETP).</p>
+                        <span class="value text-success">+10 000 €</span>
+                         <p class="description">ROI annuel estimé.</p>
+                        <span class="value">2 mois</span>
+                        <p class="description mb-0">Seuil de rentabilité atteint.</p>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="result-item text-center">
+                        <h4><i class="bi bi-person-workspace me-2"></i>Cabinet RH</h4>
+                        <span class="value">105 jours / an</span>
+                        <p class="description">Économisés sur les processus de recrutement (offres, tri CV, entretiens).</p>
+                         <span class="value">50%</span>
+                        <p class="description mb-0">Réduction du temps global consacré au recrutement.</p>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="result-item text-center">
+                         <h4><i class="bi bi-bank me-2"></i>Administrateur Judiciaire</h4>
+                        <span class="value">55 jours / an</span>
+                        <p class="description">Économisés sur la rédaction des comptes-rendus de réunions.</p>
+                        <span class="value">24h</span>
+                        <p class="description mb-0">Délai de livraison des CR (vs 1-2 semaines avant).</p>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+                     <div class="result-item text-center">
+                        <h4><i class="bi bi-house-door me-2"></i>Agent Immobilier</h4>
+                        <span class="value">40 jours / an</span>
+                        <p class="description mb-0">Gain de temps total sur la rédaction (CR visites, annonces) et la communication.</p>
+                     </div>
+                </div>
+                 <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="result-item text-center">
+                         <h4><i class="bi bi-lightbulb me-2"></i>Conseil</h4>
+                        <span class="value">12 jours / an</span>
+                        <p class="description mb-0">Économisés sur la recherche documentaire approfondie.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="500">
+                     <div class="result-item text-center w-100 d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                         <h4 style="color: var(--text-color);">Votre Entreprise ?</h4>
+                         <p class="description mb-3" style="color: rgba(0, 0, 0, 0.7);">Découvrez comment l'IA peut transformer vos propres processus.</p>
+                         <a href="#contact" class="btn btn-light"><i class="bi bi-calculator-fill"></i> Estimer votre ROI</a>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding bg-grey">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2><i class="bi bi-chat-quote-fill"></i>Ce que disent mes clients</h2>
+                     <p class="lead mb-5">La satisfaction de mes clients est ma meilleure récompense.</p>
+                     <div class="mb-4">
+                        <h4 class="google-rating mb-0">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            4.9 / 5 (+40 avis Google)
+                         </h4>
+                         <a href="https://g.co/kgs/SwUJuDA" target="_blank" class="text-decoration-none">Voir les avis Google <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="row gy-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="card h-100">
+                         <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-sHoitMpbE5I-unsplash-scaled.jpg" class="card-img-top" alt="Témoignage abstrait 1">
+                        <div class="card-body">
+                            <p class="testimonial-quote">"Intervention de très grande qualité [...] Une vision très claire [...] Je recommande vivement cet expert."</p>
+                             <span class="testimonial-author">Céline Gibassier</span>
+                            <span class="testimonial-source">Responsable OF Keepschool (via <a href="https://bit.ly/4jK0kAe" target="_blank">LinkedIn <i class="bi bi-box-arrow-up-right"></i></a>)</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100">
+                         <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-4nBaO2Y4IzQ-unsplash-scaled.jpg" class="card-img-top" alt="Témoignage abstrait 2">
+                        <div class="card-body">
+                            <p class="testimonial-quote">"Jérôme est un expert en IA [...] très pédagogue, s'adaptant à son public [...] une approche très pratique."</p>
+                            <span class="testimonial-author">Carolie Dauvergne</span>
+                            <span class="testimonial-source">Responsable OF Evolve (via <a href="https://bit.ly/3CAuhSi" target="_blank">LinkedIn <i class="bi bi-box-arrow-up-right"></i></a>)</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                         <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-jtdkpp2ZV68-unsplash-scaled.jpg" class="card-img-top" alt="Témoignage abstrait 3">
+                        <div class="card-body">
+                            <p class="testimonial-quote">"Une formation complète et dynamique [...] L'expertise de Jérôme et sa pédagogie ont rendu ces journées particulièrement enrichissantes."</p>
+                            <span class="testimonial-author">OF ORIFF-PL</span>
+                            <span class="testimonial-source">(via <a href="https://bit.ly/4hIlkFl" target="_blank">LinkedIn <i class="bi bi-box-arrow-up-right"></i></a>)</span>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Ajouter Bruno AMATHIEU si besoin -->
+                 <!-- <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100">
+                         <img src="URL_IMAGE_CARREE_4" class="card-img-top" alt="Témoignage abstrait 4">
+                         <div class="card-body">
+                             <p class="testimonial-quote">"Citation de Bruno Amathieu..."</p>
+                             <span class="testimonial-author">Bruno AMATHIEU</span>
+                             <span class="testimonial-source">Dirigeant d’entreprise (via <a href="https://bit.ly/40LN6Ks" target="_blank">LinkedIn <i class="bi bi-box-arrow-up-right"></i></a>)</span>
+                         </div>
+                    </div>
+                 </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2><i class="bi bi-building-check"></i>Ils me font confiance</h2>
+                    <p class="lead mb-5">J'ai le plaisir de collaborer avec des entreprises leaders et des organismes de formation reconnus.</p>
+                </div>
+            </div>
+             <div class="row mb-5" data-aos="fade-up">
+                 <h3 class="text-center mb-4" style="font-weight: 600; font-size: 1.5rem;">Quelques clients Conseil IA</h3>
+                 <div class="d-flex flex-wrap justify-content-center align-items-center">
+                     <!-- Ajouter les logos des clients ici si disponibles, sinon juste les noms -->
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Amefa</span>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Procadres</span>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Go&Live</span>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Alberto Motors</span>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Pascaleo</span>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Dans nos cœurs</span>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Etc.</span>
+                 </div>
+             </div>
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                 <h3 class="text-center mb-4" style="font-weight: 600; font-size: 1.5rem;">Organismes de Formation Partenaires (+30 en France)</h3>
+                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                    <!-- Utiliser des images de logos si disponibles, sinon les noms -->
+                    <!-- Exemple avec des noms pour l'instant -->
+                    <a href="https://www.leserudits.fr/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">Les Erudits (Paris)</a>
+                    <a href="https://www.sparks-formation.com/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">Sparks (Lyon)</a>
+                    <a href="https://arrow-conseil.com/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">Arrow (Nantes)</a>
+                    <a href="https://www.zenos.fr/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">Zenos (St Etienne)</a>
+                    <a href="https://keepschool.com/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">KeepSchool (Rodez)</a>
+                     <a href="https://www.esc-clermont.fr/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">Clermont SB</a>
+                     <a href="https://www.oo2.fr/" target="_blank" class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm text-decoration-none">Oo2 (Bruxelles)</a>
+                     <span class="badge bg-light text-dark p-3 m-2 fs-6 shadow-sm">Etc.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2><i class="bi bi-envelope-paper-fill"></i>Prêt à passer à l'action ?</h2>
+                    <p class="lead mb-5">Contactez-moi pour discuter de vos besoins spécifiques et voir comment l'IA Générative peut propulser votre activité.</p>
+                </div>
+            </div>
+            <div class="row gy-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h3 class="mb-4">Contactez-moi directement</h3>
+                     <div class="contact-info">
+                         <p><i class="bi bi-envelope-fill"></i><a href="mailto:jerome.iavarone@gmail.com">jerome.iavarone@gmail.com</a></p>
+                         <p><i class="bi bi-telephone-fill"></i><a href="tel:+33628070988">+33 6 28 07 09 88</a></p>
+                         <p><i class="bi bi-geo-alt-fill"></i><span>8 bis boulevard Leon Malfreyt<br>63 000 Clermont-Ferrand</span></p>
+                         <p><i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/jerome-iavarone/" target="_blank">Profil LinkedIn</a></p>
+                     </div>
+                      <a href="mailto:jerome.iavarone@gmail.com?subject=Demande d'information IA Générative" class="btn btn-primary me-2 mt-3"><i class="bi bi-envelope-fill"></i> Envoyer un Email</a>
+                      <a href="tel:+33628070988" class="btn btn-secondary mt-3"><i class="bi bi-telephone-fill"></i> Appeler maintenant</a>
+                 </div>
+                 <div class="col-lg-6 d-flex align-items-center justify-content-center" data-aos="fade-left" data-aos-delay="100">
+                    <img src="https://www.iacademy-formation.com/wp-content/uploads/2025/04/google-deepmind-QEA9JMqOuVc-unsplash-scaled.jpg" alt="Contact abstrait IA" class="img-fluid rounded shadow-md" style="max-height: 400px; filter: contrast(110%) saturate(110%);">
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                     <h5 class="text-uppercase mb-3" style="color:#fff;">Jérôme Iavarone</h5>
+                     <p>
+                        Consultant et Formateur Expert en Intelligence Artificielle Générative. <br>Accompagnement des entreprises vers l'optimisation et l'innovation.
+                    </p>
+                 </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-3" style="color:#fff;">Liens rapides</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#about">Expertise</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#results">Résultats</a></li>
+                        <li><a href="#testimonials">Témoignages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-center text-md-end">
+                     <h5 class="text-uppercase mb-3" style="color:#fff;">Suivez-moi</h5>
+                     <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/jerome-iavarone/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="mailto:jerome.iavarone@gmail.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                        <a href="tel:+33628070988" title="Téléphone"><i class="bi bi-telephone-fill"></i></a>
+                     </div>
+                 </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+            © 2024 Jérôme Iavarone - Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- AOS JS (CDN) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800, // Durée des animations
+            once: true, // Animer une seule fois
+            offset: 50 // Décalage avant déclenchement
+        });
+    </script>
+
+</body>
+</html>
